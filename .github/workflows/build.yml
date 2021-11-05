@@ -1,4 +1,4 @@
-name: build_ErfanGSIs
+name: build
 
 on:
 #  release:
@@ -14,9 +14,6 @@ on:
     types: [started]
     
 env:
-  ROM_URL: https://get.mirror2.arrowos.net/download.php?token=zIybX1YNhcptEoFG4uLVACUd0vD6n285SZrQs7fjgHaPwmJqiRKBe3xWkM9T&version=arrow-12.0&variant=experiments&device=raphael
-  ROM_NAME: Generic
-  BUILD_TYPE: ab
   TZ: Asia/Shanghai
 
 jobs:
