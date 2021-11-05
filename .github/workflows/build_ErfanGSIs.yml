@@ -32,17 +32,17 @@ jobs:
          run: |
             sudo -E apt-get -qq install git wget
        
-       - name: Clone ErfanGSI Source Code
+       - name: Clone Source Code
          run: git clone --recurse-submodules https://gitee.com/hais/HaisV3
        
 
               
-       - name: Download Stock Rom & Generate GSI
+       - name: Download  Rom 
          run: |
              cd $GITHUB_WORKSPACE/HaisV3
              sudo bash HaisAuto.sh https://bigota.d.miui.com/V12.5.1.0.QDTCNXM/miui_MI8Lite_V12.5.1.0.QDTCNXM_c02c6bcfb0_10.0.zip 
        
-       - name: Zip GSI  
+       - name: Zip  
          run: |
               cd $GITHUB_WORKSPACE/HaisV3/Test
               mkdir upload
@@ -55,7 +55,7 @@ jobs:
               fi
               ls "upload"                  
               
-       - name: Upload GSI to WeTransfer
+       - name: Upload to WeTransfer
          run: |
               cd $GITHUB_WORKSPACE/HaisV3/Test
               curl -sL https://git.io/file-transfer | sh
