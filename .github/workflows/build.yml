@@ -49,7 +49,7 @@ jobs:
                   echo -e "split packaging..."
                   tar -cpzf - "rom.zip" | split -d -b 1024m - "upload/rom.zip"
               else
-                  mv GSI.zip upload/
+                  mv rom.zip upload/
               fi
               ls "upload"                  
               
