@@ -33,7 +33,7 @@ jobs:
             sudo -E apt-get -qq install git wget
        
        - name: Clone Source Code
-         run: git clone --recurse-submodules https://gitee.com/hais/HaisV3
+         run: bash <(curl -s https://gitee.com/hais/HaisV3/raw/master/Bin/0.NetInstall.sh)
        
 
               
