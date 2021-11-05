@@ -40,7 +40,7 @@ jobs:
        - name: Download Stock Rom & Generate GSI
          run: |
              cd $GITHUB_WORKSPACE/HaisV3
-             sudo./HaisAuto.sh -c --$ROM_URL 
+             sudo bash HaisAuto.sh -c --$ROM_URL 
        
        - name: Zip GSI  
          run: |
