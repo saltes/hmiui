@@ -18,47 +18,6 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
-    if: github.event.repository.owner.id == github.event.sender.id
-
-    steps:
-       - name: Checkout
-         uses: actions/checkout@master
-           
-       - name: Initialization environment
-         run: |
-            sudo -E apt-get -qq install git wget
-       
-       - name: Clone Source Code
-         run: |
-             git clone -b test --depth 1 https://gitee.com/hais/HaisV3.git $GITHUB_WORKSPACE/HaisV3       
-             sudo ./HaisV3/0.Install.sh
-              
-       - name: Download  Rom 
-         run: |
-             cd $GITHUB_WORKSPACE/HaisV3
-             sudo ./Bin/1.Start.sh https://bigota.d.miui.com/V12.5.1.0.QDTCNXM/miui_MI8Lite_V12.5.1.0.QDTCNXM_c02c6bcfb0_10.0.zip
-       - name: Zip  
-         run: |name: build
-
-on:
-#  release:
-#    types: [published]
-#  push:
-#    branches:
-#      - master
-#    paths:
-#      - '.config'
-#  schedule:
-#    - cron: 0 8 * * 5
-  watch:
-    types: [started]
-    
-env:
-  TZ: Asia/Shanghai
-
-jobs:
-  build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
 
@@ -81,20 +40,3 @@ jobs:
          run: |
              cd $GITHUB_WORKSPACE
              sudo ./HaisV3/Bin/1.Start.sh 'https://bigota.d.miui.com/V12.5.1.0.QDTCNXM/miui_MI8Lite_V12.5.1.0.QDTCNXM_c02c6bcfb0_10.0.zip' 
-              cd $GITHUB_WORKSPACE/HaisV3/Test
-              mkdir upload
-              zip -r rom.zip ./*
-              if [[ $(du -sb "rom.zip" | awk '{print $1}') -gt 2097152000 ]];then
-                  echo -e "split packaging..."
-                  tar -cpzf - "rom.zip" | split -d -b 1024m - "upload/rom.zip"
-              else
-                  mv rom.zip upload/
-              fi
-              ls "upload"                  
-              
-       - name: Upload to WeTransfer
-         run: |
-              cd $GITHUB_WORKSPACE/HaisV3/Test
-              curl -sL https://git.io/file-transfer | sh
-              ./transfer wet ./upload/*
-            
